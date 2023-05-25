@@ -15,6 +15,16 @@ app.use(morgan("dev")); // muestra por consola las peticiones que llegan al serv
 app.use(express.json()); // permite que el servidor entienda los formatos json
 app.use(express.urlencoded({ extended: false })); // permite que el servidor entienda los formatos html
 
+// habilitar cors
+const cors = require("cors");
+app.use(cors());
+
+// habilitar cors para todas las rutas
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+  });
+
  // Routes
 app.use(languageRoutes);
 
